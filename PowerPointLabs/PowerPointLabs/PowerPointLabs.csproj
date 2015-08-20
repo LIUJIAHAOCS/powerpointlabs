@@ -38,10 +38,10 @@
     <OldToolsVersion>4.0</OldToolsVersion>
     <VSTO_TrustAssembliesLocation>true</VSTO_TrustAssembliesLocation>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Users\User\Desktop\PowerPointLabsPublish\</PublishUrl>
+    <PublishUrl>C:\Users\Oh\Desktop\PowerPointLabsPublish\</PublishUrl>
     <InstallUrl>http://www.comp.nus.edu.sg/~pptlabs/download/dev/</InstallUrl>
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>2.4.0.0</ApplicationVersion>
+    <ApplicationVersion>2.7.2.0</ApplicationVersion>
     <AutoIncrementApplicationRevision>false</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>
@@ -221,6 +221,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -264,6 +265,7 @@
       <DependentUpon>ColorInformationDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="ColorPicker\HSLColor.cs" />
+    <Compile Include="Converters\DrawingsLabConverters.cs" />
     <Compile Include="CustomBinding.cs" />
     <Compile Include="CustomControls\BufferedFlowLayoutPanel.cs">
       <SubType>Component</SubType>
@@ -282,6 +284,8 @@
     <Compile Include="Converters\ColorPaneConverters.cs" />
     <Compile Include="ConvertToPicture.cs" />
     <Compile Include="CropToShape.cs" />
+    <Compile Include="DataSources\DrawingsLabAlignmentDataSource.cs" />
+    <Compile Include="DataSources\DrawingsLabDataSource.cs" />
     <Compile Include="DataSources\ShapesLabSettingsDataSource.cs" />
     <Compile Include="ImageSearch\Handler\Effect\Alignment.cs" />
     <Compile Include="ImageSearch\Handler\Effect\Banner.cs" />
@@ -319,6 +323,23 @@
     <Compile Include="ImageSearch\Util\StoragePath.cs" />
     <Compile Include="ImageSearch\Util\TempPath.cs" />
     <Compile Include="ImageSearch\SearchEngine\VO\GoogleSearchResults.cs" />
+    <Compile Include="DrawingsLab\AlignmentDialogVertical.xaml.cs">
+      <DependentUpon>AlignmentDialogVertical.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingsLab\AlignmentDialogHorizontal.xaml.cs">
+      <DependentUpon>AlignmentDialogHorizontal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingsLab\DrawingsLabDialogs.cs" />
+    <Compile Include="DrawingsLab\DrawingsLabMain.cs" />
+    <Compile Include="DrawingsLab\DrawingsPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingsLab\DrawingsPane.Designer.cs">
+      <DependentUpon>DrawingsPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingsLab\DrawingsPaneWPF.xaml.cs">
+      <DependentUpon>DrawingsPaneWPF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\PowerPointBgEffectSlide.cs" />
     <Compile Include="LabeledThumbnail.cs">
       <SubType>UserControl</SubType>
@@ -334,6 +355,7 @@
     </Compile>
     <Compile Include="Models\PowerPointPresentation.cs" />
     <Compile Include="Models\PowerPointShapeGalleryPresentation.cs" />
+    <Compile Include="PPKeyboard.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -512,6 +534,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ColorPicker\ColorPane.resx">
       <DependentUpon>ColorPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingsLab\DrawingsPane.resx">
+      <DependentUpon>DrawingsPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LoadingDialog.resx">
       <DependentUpon>LoadingDialog.cs</DependentUpon>
@@ -778,6 +803,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DrawingsLab\AlignmentDialogVertical.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DrawingsLab\AlignmentDialogHorizontal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DrawingsLab\DrawingsPaneWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\loading.gif" />
