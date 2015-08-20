@@ -60,6 +60,7 @@ namespace PowerPointLabs
             new Updater().TryUpdate();
 
             PPMouse.Init(Application);
+            PPKeyboard.Init(Application);
             PPCopy.Init(Application);
             SetupDoubleClickHandler();
             SetupTabActivateHandler();
@@ -329,6 +330,7 @@ namespace PowerPointLabs
         private void ThisAddInShutdown(object sender, EventArgs e)
         {
             PPMouse.StopHook();
+            PPKeyboard.StopHook();
             PPCopy.StopHook();
             Trace.TraceInformation(DateTime.Now.ToString("yyyyMMddHHmmss") + ": PowerPointLabs Exiting");
             Trace.Close();
@@ -523,6 +525,18 @@ namespace PowerPointLabs
             var activeWindow = presentation.Application.ActiveWindow;
 
             RegisterTaskPane(new ColorPane(), TextCollection.ColorsLabTaskPanelTitle, activeWindow, null, null);
+        }
+
+        public void RegisterDrawingsPane(PowerPoint.Presentation presentation)
+        {
+            if (GetActivePane(typeof(DrawingsPane)) != null)
+            {
+                return;
+            }
+
+            var activeWindow = presentation.Application.ActiveWindow;
+
+            RegisterTaskPane(new DrawingsPane(), TextCollection.DrawingsLabTaskPanelTitle, activeWindow, null, null);
         }
 
         public void RegisterShapesLabPane(PowerPoint.Presentation presentation)
@@ -1249,7 +1263,7 @@ namespace PowerPointLabs
         #endregion
 
         #region Double Click to Open Property Window
-        private const string ShortcutAltHO = "%ho";
+        private const string ShortcutAltHO = "%h%o";
 
         private const int CommandOpenBackgroundFormat = 0x8F;
 
