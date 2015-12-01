@@ -23,7 +23,6 @@ namespace PowerPointLabs
 
                 PowerPoint.ShapeRange selectedShapes = null;
                 Office.TextRange2 selectedText = null;
-                Boolean hasBackGround = false;
 
                 //Get shapes to consider for animation
                 switch (userSelection)
@@ -42,12 +41,7 @@ namespace PowerPointLabs
                 if (selectedText.Length <= 0) return;
                 if (selectedShapes.Count != 1) return;
 
-                if (selectedShapes.Fill.ForeColor.RGB == 16777215)
-                {
-                    hasBackGround = true;
-                }
-
-                List<PowerPoint.Shape> selectionToAnimate = GetShapesFromLinesInText(currentSlide, selectedText, selectedShapes[1], hasBackGround);
+                List<PowerPoint.Shape> selectionToAnimate = GetShapesFromLinesInText(currentSlide, selectedText, selectedShapes[1]);
                 GroupShapesForAnimation(selectionToAnimate);
 
                 List<PowerPoint.Shape> shapesToAnimate = GetShapesToAnimate(currentSlide);
